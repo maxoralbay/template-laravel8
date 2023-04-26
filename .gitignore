@@ -1,0 +1,8 @@
+/.idea
+/.vscode
+/docker/postgres/pg-data/*
+/docker/nginx/logs/*
+frontend/package-lock\.json
+
+backend/composer\.lock
+docker/postgres/data/

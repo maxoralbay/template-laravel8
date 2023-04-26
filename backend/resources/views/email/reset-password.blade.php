@@ -1,0 +1,1 @@
+<h3>Votre code de réinitialisation de mot de passe : {{ $token }}</h3>
