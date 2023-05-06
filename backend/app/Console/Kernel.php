@@ -4,8 +4,6 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use App\Models\User;
-use Illuminate\Support\Carbon;
 
 class Kernel extends ConsoleKernel
 {
@@ -18,18 +16,6 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
-
-        $schedule->call(function () {
-            $users = User::whereHas('completedChallenges', function ($query) {
-                $query->where('chellenge_user.created_at', '<=', Carbon::now()->subDays(8));
-            })->with('completedChallenges')->get();
-            
-            foreach ($users as $user) {
-                foreach($user->completedChallenges as $challenge) {
-                    $user->completedChallenges()->toggle($challenge->id);
-                }
-            }
-        })->weeklyOn(1, '8:00');
     }
 
     /**
